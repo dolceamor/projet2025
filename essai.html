@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer votre Profil</title>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Créer votre Profil</h2>
+    <form id="profileForm" action="profile.html" method="GET">
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Téléphone :</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="photo">Insérer votre photo :</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+            <img id="photoPreview" src="" alt="Aperçu de la photo" class="photo-preview" />
+        </div>
+
+        <div class="form-group">
+            <label for="services">Services Offerts :</label>
+            <textarea id="services" name="services" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="availability">Disponibilité :</label>
+            <select id="availability" name="availability">
+                <option value="disponible">Disponible</option>
+                <option value="occupe">Occupé</option>
+            </select>
+        </div>
+
+        <button type="submit" class="publish-button">Publier son Profil</button>
+    </form>
+</div>
+
+<style>
+/* Styles similaires à ceux fournis précédemment */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.profile-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: none;
+}
+
+.photo-preview {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.publish-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.publish-button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<script>
+    document.getElementById('photo').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('photoPreview').src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const services = document.getElementById('services').value;
+        const availability = document.getElementById('availability').value;
+        const photoSrc = document.getElementById('photoPreview').src;
+
+        // Stocker les données dans le stockage local
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('services', services);
+        localStorage.setItem('availability', availability);
+        localStorage.setItem('photo', photoSrc);
+
+        // Rediriger vers la page du profil
+        window.location.href = 'profil.html';
+    });
+</script>
+
+</body>
+</html>

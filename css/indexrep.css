@@ -1,0 +1,62 @@
+/* Ajout de styles pour les écrans plus petits */
+
+@media (max-width: 1200px) {
+    .dashboad-container {
+        grid-template-columns: 1fr; /* Une seule colonne pour les petits écrans */
+    }
+    .main-sidebar {
+        width: 100%; /* La barre latérale prend toute la largeur */
+    }
+    .main-container {
+        margin-right: 0; /* Supprimez la marge droite */
+        padding: 20px; /* Réduire le padding */
+    }
+    .extrabar {
+        width: 100%; /* La barre d'extra prend toute la largeur */
+    }
+}
+
+@media (max-width: 768px) {
+    .insights {
+        grid-template-columns: 1fr; /* Une seule colonne pour les cartes */
+    }
+    .recent-orders table {
+        font-size: 12px; /* Réduire la taille de police pour les petites écrans */
+    }
+    .recent-orders .ro-title {
+        flex-direction: column; /* Aligner le titre et le lien verticalement */
+        align-items: flex-start; /* Alignement à gauche */
+    }
+    .recent-orders .ro-title a {
+        padding-right: 0; /* Supprimer le padding droit */
+    }
+    
+    .header-right .profile {
+        flex-direction: column; /* Alignement vertical des éléments de profil */
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 28px; /* Réduire la taille de la police du titre principal */
+    }
+    .list-items .item a {
+        padding: 10px; /* Réduire le padding des éléments de la liste */
+        font-size: 1rem; /* Réduire la taille de la police */
+    }
+    .card-body .percentage {
+        font-size: 14px; /* Réduire la taille de la police du pourcentage */
+    }
+    .recent-updates h2 {
+        font-size: 18px; /* Réduire la taille de la police des mises à jour récentes */
+    }
+}
+
+/* Styles par défaut */
+body {
+    background-color: var(--light);
+    color: var(--text-color-primary);
+    height: auto; /* Permettre à la hauteur de s'adapter au contenu */
+    min-height: 100vh; /* Assurer que le corps prend au moins toute la hauteur de la fenêtre */
+    transition: background-color .3s ease-in-out, color 0.3s ease-in-out;
+}
