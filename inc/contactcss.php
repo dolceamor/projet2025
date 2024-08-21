@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url(../images/img6.jpg);
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(../images/img6.jpg);
     background-size: cover;
      /* Ajustez la valeur pour éclaircir ou assombrir */
 }
@@ -117,7 +117,7 @@
 .contactForm .inputBox textarea:focus ~ span,
 .contactForm .inputBox textarea:valid ~ span
 {
-    color: #e91e63;
+    color: #Ff7f00;
     font-size: 12px;
     transform: translateY(-20px);
 }

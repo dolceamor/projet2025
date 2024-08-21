@@ -41,7 +41,7 @@ try {
 
 $conn = null;
 if(isset($_POST['send'])){
-  header("Location:page2.html");
+  header("Location:accueil.php");
   exit;
 }
 ?>
@@ -94,7 +94,7 @@ try {
 
 $conn = null;
 if(isset($_POST['envoi'])){
-  header("Location:page2.html");
+  header("Location:accueil.php");
   exit;
 }
 ?>

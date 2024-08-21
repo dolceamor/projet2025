@@ -5,7 +5,7 @@
 }
 .main{
     width: 100%;
-    background: url("../images/img4.jpg");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../images/img4.jpg);
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); 
     background-position: center;
@@ -15,7 +15,7 @@
     }
  
 .navbar{
-    width: 1200px;
+    width: 1170px;
     height: 75px;
 }
 .icon{
@@ -24,7 +24,7 @@
     height: 70px;
 }
 .logo{
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 30%;
     border-radius:50px;
 }
@@ -82,8 +82,8 @@ ul li a:hover{
 .btn{
     width: 100px;
     height: 40px;
-    background: dodgerblue;
-    border: 2px solid dodgerblue;
+    background: #Ff7f00;
+    border: 2px solid #Ff7f00;
     margin-top: 13px;
     color: #fff;
     font-size: 15px;
@@ -127,12 +127,12 @@ ul li a:hover{
 
 }
 .content .call{
-    width: 160px;
+    width: 180px;
     height: 40px;
-    background: dodgerblue;
+    background: #Ff7f00;
     border: none;
-    margin-bottom: 10px;
     margin-left: 20px;
+    margin-top:40px;
     font-size: 18px;
     border-radius: 10px;
     cursor: pointer;
@@ -148,6 +148,74 @@ ul li a:hover{
     color:dodgerblue;
     font-size: 60px;
 }
+
+.chart-container {
+    width: 96%;
+     margin: auto;
+     margin-top:30px;
+     background: white;
+     padding: 20px;
+     border-radius: 8px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     
+}
+           
+        
+ h2 {
+    text-align: center;
+    color: #382405;
+    font-weight:bold;
+ }
+ .images{
+    display: flex;
+    margin-top:40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+ }
+ .images img{
+    width: 20%;
+
+ }
+
+ footer {
+    background-color: #382405;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 1170px;
+    height:140px;
+    margin: 0 auto;
+    margin-top:10px;
+    display: flex;
+    justify-content:space-between;
+}
+
+
+
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size:20px;
+    display: block;
+    margin-top:7px;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+    color:#Ff7f00;
+}
+.footer-content p{
+    font-size:20px;   
+}
+.reseau .icon{
+    margin-top:7px;
+    font-size:25px;
+    
+}
+
 
 
 

@@ -139,7 +139,6 @@ a:hover{
 }
 .list-items li:last-child{
     position: absolute;
-    bottom: 1px;
     width: 100%;
 }
 .list-items .item a{
@@ -154,14 +153,14 @@ a:hover{
     transition: all 0.3s ease-in-out;
 }
 .list-items .item a:hover{
-    color:  #ff6f61;
+    color:   #77B5FE;
     transform: translateX(5%);
 }
 .list-items .item a:active, .list-items .item a.active{
     color:var(--teext-color-primary);
     border-left: 7px solid transparent;
     border-left-color: #ffffff;
-    background-color: #ffffff;
+    background-color:#77B5FE;
     
 }
 
@@ -177,14 +176,10 @@ a:hover{
 .item a:hover .message-count,
 .item a:active .message-count,
 .item a.active .message-count{
-    background-color: var(--white);
-    color:var(--fuscha);
-    border: 1px solid var(--fuscha);
+    background-color:  #fff;
+    color:#77B5FE;
+    border: 1px solid  #77B5FE;
 }
-
-
-
-
 
 
 /* ************* Main************* */
@@ -318,6 +313,40 @@ a:hover{
 .action-buttons {
          display: flex;
          gap: 10px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+.modal-content {
+   background-color: #fefefe;
+   margin: 5% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 300px;
+ }
+
+.chart-container {
+   width: 98%;
+   margin: auto;
+   margin-top:30px;
+   background: white;
+   padding: 15px;
+   border-radius: 8px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+   text-align: center;
+   color: #333;
 }
 
 
@@ -501,6 +530,8 @@ a:hover{
 body.dark-mode {
     color: #ffffff; 
 }
+
+
 /* mode responsif*/
 /* Ajout de styles pour les écrans plus petits */
 
@@ -553,17 +584,11 @@ body.dark-mode {
     }
     .recent-updates h2 {
         font-size: 18px; /* Réduire la taille de la police des mises à jour récentes */
+        
     }
+    
 }
 
-/* Styles par défaut */
-body {
-    background-color: var(--light);
-    color: var(--text-color-primary);
-    height: auto; /* Permettre à la hauteur de s'adapter au contenu */
-    min-height: 100vh; /* Assurer que le corps prend au moins toute la hauteur de la fenêtre */
-    transition: background-color .3s ease-in-out, color 0.3s ease-in-out;
-}
 
 
 
