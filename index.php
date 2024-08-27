@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <?php
-    include("inc/indexcss.php");
-    ?>
-
+    <?php include("inc/indexcss.php"); ?>
 </head>
+
 <body>
     <div class="dashboad-container">
         <div class="main-sidebar">
@@ -175,83 +172,97 @@
                     <h2 class="recent-orders-tiltle">Demandes recentes</h2>
                     <a href="#" class="show all">Tout afficher</a>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>STRUCTURE</th>
-                            <th>SECTEUR D'ACTIVITE</th>
-                            <th>SALAIRE</th>
-                            <th>DATE DE PUBLICAITION</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="jobTable">
-                       <tr>
-                          <td>Mme Kessel</td>
-                          <td>Ménagère</td>
-                          <td>50.000 FCFA</td>
-                          <td>maintenant</td>
-                         <td class="action-buttons">
-                         <button onclick="openModal(this)">Postuler</button>
-                         <button onclick="deleteRow(this)">Refuser</button>
-                         </td>
-                       </tr>
-                        <tr>
-                            <td>KIM COMPANY</td>
-                            <td>Receptionniste</td>
-                            <td>60.000fcfa negociable</td>
-                            <td>il ya 3min</td>
-                            <td class="action-buttons">
-                              <button onclick="openModal(this)">Postuler</button>
-                              <button onclick="deleteRow(this)">Refuser</button>
-                          </td>
-                        </tr>
-                          
-                        <tr>
-                            <td>KMC</td>
-                            <td>Techniciens de surface</td>
-                            <td>70.000FCFA</td>
-                            <td>il ya 1h</td>
-                            <td class="action-buttons">
-                              <button onclick="openModal(this)">Postuler</button>
-                              <button onclick="deleteRow(this)">Refuser</button>
-                          </td>
-                        </tr>
-                        <tr>
-                            <td>Msr germain</td>
-                            <td>Plombier</td>
-                            <td>80.000fcfa</td>
-                            <td>il ya 2h</td>
-                            <td class="action-buttons">
-                              <button onclick="openModal(this)">Postuler</button>
-                              <button onclick="deleteRow(this)">Refuser</button>
-                          </td>
-                        </tr>
-                        <tr>
-                            <td>SONEOPAD YASSA</td>
-                            <td>MAGASINIER</td>
-                            <td>70.000fcfa</td>
-                            <td>il ya 24h</td>
-                            <td class="action-buttons">
-                              <button onclick="openModal(this)">Postuler</button>
-                              <button onclick="deleteRow(this)">Refuser</button>
-                          </td>
-                        </tr>
-                        
+                <table id="jobTable">
+    <thead>
+        <tr>
+            <th>STRUCTURE</th>
+            <th>SECTEUR D'ACTIVITE</th>
+            <th>SALAIRE</th>
+            <th>DATE DE PUBLICAITION</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Mme Kessel</td>
+            <td>Ménagère</td>
+            <td>50.000 FCFA</td>
+            <td>maintenant</td>
+            <td class="action-buttons">
+                <button onclick="openModal(this)">Postuler</button>
+                <button onclick="deleteRow(this)">Refuser</button>
+            </td>
+        </tr>
+        <tr>
+            <td>KIM COMPANY</td>
+            <td>Receptionniste</td>
+            <td>60.000fcfa negociable</td>
+            <td>il y a 3min</td>
+            <td class="action-buttons">
+                <button onclick="openModal(this)">Postuler</button>
+                <button onclick="deleteRow(this)">Refuser</button>
+            </td>
+        </tr>
+        <tr>
+            <td>KMC</td>
+            <td>Techniciens de surface</td>
+            <td>70.000FCFA</td>
+            <td>il y a 1h</td>
+            <td class="action-buttons">
+                <button onclick="openModal(this)">Postuler</button>
+                <button onclick="deleteRow(this)">Refuser</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Msr Germain</td>
+            <td>Plombier</td>
+            <td>80.000fcfa</td>
+            <td>il y a 2h</td>
+            <td class="action-buttons">
+                <button onclick="openModal(this)">Postuler</button>
+                <button onclick="deleteRow(this)">Refuser</button>
+            </td>
+        </tr>
+        <tr>
+            <td>SONEOPAD YASSA</td>
+            <td>MAGASINIER</td>
+            <td>70.000fcfa</td>
+            <td>il y a 24h</td>
+            <td class="action-buttons">
+                <button onclick="openModal(this)">Postuler</button>
+                <button onclick="deleteRow(this)">Refuser</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-                    </tbody>
-                </table>
-                <div id="myModal" class="modal">
-                   <div class="modal-content">
-                     <span onclick="closeModal()" style="cursor:pointer;">&times;</span>
-                    <h2>Ajouter votre CV</h2>
-                   <form id="cvForm" action="send_cv.php" method="POST" enctype="multipart/form-data">
-                   <input type="file" name="cv" id="cvInput" accept=".pdf,.doc,.docx" required>
-                   <input type="hidden" name="structure" id="structureInput">
-                  <button type="submit">Soumettre</button>
-                  </form>
-                 </div>
-             </div>
+                    
+<div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Formulaire de Candidature</h3>
+            <form id="applicationForm" method="post" action="traitement.php"enctype="multipart/form-data">
+    <label for="applicantName">Nom :</label>
+    <input type="text" name="applicantName" id="applicantName" required>
+    <br>
+    <label for="applicantFirstName">Prénom :</label>
+    <input type="text" name="applicantFirstName" id="applicantFirstName" required>
+    <br>
+    <label for="applicantContact">Contact :</label>
+    <input type="text" name="applicantContact" id="applicantContact" required>
+    <br>
+    <label for="applicantEmail">Email :</label>
+    <input type="email" name="applicantEmail" id="applicantEmail" required>
+    <br>
+    <label for="cvInput">Ajouter votre CV :</label>
+    <input type="file" name="cv" id="cvInput" accept=".pdf,.doc,.docx" required>
+    <br>
+    <input type="hidden" id=jobPosterEmail value="blanchetchuisseu@gmail.com">
+    <button type="submit">Envoyer</button>
+</form>
+
+        </div>
+    </div>
             </section>
             <div class="chart-container">
               <h2>Évolution des Services, Demandes et Revenus</h2>
@@ -318,7 +329,7 @@
                 </div>
             </div>
             <div class="analytics">
-                <h2>ServiceLink</h2>
+                <h2>MES SERVICES</h2>
             
              <div class="order">
                 <div class="order-icon">
@@ -363,6 +374,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#jobTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.4/dataTables.french.json' // Pour le français
+            }
+        });
+    });
+    </script>
 
 </body>
 
@@ -475,41 +496,30 @@ function darkMode() {
 
 </script>
 <script>
-        let currentRow;
-
-        function openModal(button) {
-            currentRow = button.closest('tr');
-            document.getElementById("myModal").style.display = "block";
+        function openModal() {
+            document.getElementById("modal").style.display = "flex";
         }
 
         function closeModal() {
-            document.getElementById("myModal").style.display = "none";
+            document.getElementById("modal").style.display = "none";
         }
 
-        function submitCV() {
-            const cvInput = document.getElementById("cvInput");
-            const file = cvInput.files[0];
-
-            if (file) {
-                // Ici, vous devriez envoyer le fichier par email via un backend
-                alert("Votre CV a été soumis: " + file.name);
-                closeModal();
-            } else {
-                alert("Veuillez sélectionner un fichier.");
-            }
+        function submitApplication() {
+            alert("Votre candidature a été soumise avec succès !");
+            closeModal();
+            return false; // Empêche la soumission réelle pour cet exemple
         }
-        function openModal(button) {
-    currentRow = button.closest('tr');
-    const structure = currentRow.cells[0].innerText; // Récupérer le nom de la structure
-    document.getElementById("structureInput").value = structure; // Mettre à jour le champ caché
-    document.getElementById("myModal").style.display = "block";
-}
+    
 
 
         function deleteRow(button) {
-            const row = button.closest('tr');
-            row.parentNode.removeChild(row);
-        }
+    const row = button.closest('tr');
+    const cells = row.querySelectorAll('td');
+
+    cells.forEach(cell => {
+        cell.textContent = ''; // Vide le contenu de chaque cellule
+    });
+}
     </script>
 
 <script>

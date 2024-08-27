@@ -149,40 +149,204 @@ ul li a:hover{
     font-size: 60px;
 }
 
+
 .chart-container {
-    width: 96%;
-     margin: auto;
-     margin-top:30px;
-     background: white;
-     padding: 20px;
-     border-radius: 8px;
-     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-     
+    overflow: hidden; 
+    position: relative; 
+    width: 96%; /* Ajustez selon votre mise en page */
+    margin: 40px auto; /* Ajoute un espace au-dessus et en dessous */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
 }
-           
-        
- h2 {
-    text-align: center;
-    color: #382405;
-    font-weight:bold;
- }
- .images{
-    display: flex;
-    margin-top:40px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+.chart-container h2{
+text-align: center; /* Centrer le titre */
+margin-bottom: 20px; /* Espace en dessous du titre */
+}
+
+.images {
+    display: flex; 
+    transition: transform 0.5s ease; 
+}
+
+.images img {
+    max-width: 250px; 
+    margin: 0 15px; 
+    border-radius: 8px; 
+    border: 2px solid #fff; 
+    padding: 5px; 
+    transition: transform 0.3s ease; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.images img:hover {
+    transform: scale(1.1); 
+}
+
+
+.recent-offers {
+    width: 96%; /* Ajustez selon votre mise en page */
+    margin: 40px auto; /* Ajoute un espace au-dessus et en dessous */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+}
+
+.recent-offers h2 {
+    text-align: center; /* Centrer le titre */
+    margin-bottom: 20px; /* Espace en dessous du titre */
+}
+
+.recent-offers ul {
+    list-style-type: none; 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    padding: 20px;
     
- }
- .images img{
-    width: 20%;
+    
+}
 
- }
 
- footer {
+.recent-offers li {
+    border: 1px solid dodgerblue;
+    width: 45vh;
+    height:60vh;
+    margin: 10px 0;
+    background-Color:#fff;
+    border-radius: 8px;
+    
+}
+.recent-offers p{
+padding:7px;
+padding-left:20px;
+}
+
+.offre-photo {
+    max-width: 80px;
+    display: block;
+    margin: 10px auto;
+    margin-left:20px;
+    
+}
+.recent-offers h3{
+ padding-left:20px; 
+}
+
+.postuler-button {
+    background-color: #Ff7f00;
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    margin-left:20px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.postuler-button:hover {
+    background-color: #007BFF; /* Couleur au survol */
+}
+
+.voir-plus {
+    background-color: #007BFF; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.voir-plus:hover {
+    background-color: #Ff7f00; 
+    transform: scale(1.05); 
+}
+
+/* Modal pour lenvoir de la candidature*/
+
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 25px;
+            color: #Ff7f00;
+        }
+
+        
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top:3px;
+            
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+button[type="submit"]:hover {
+    background-color: #Ff7f00;
+}
+
+
+.footer {
     background-color: #382405;
     color: white;
     text-align: center;
     padding: 20px 0;
-}
+    }
 
 .footer-content {
     max-width: 1170px;
@@ -191,10 +355,9 @@ ul li a:hover{
     margin-top:10px;
     display: flex;
     justify-content:space-between;
-}
+    }
 
-
-
+    
 .footer-menu a {
     color: white;
     text-decoration: none;
@@ -216,7 +379,63 @@ ul li a:hover{
     
 }
 
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease; 
+}
 
+.modal-content {
+    background-color: #fff; 
+    border-radius: 10px; 
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    animation: fadeIn 0.5s; 
+}
+
+.close {
+    color: #aaa; 
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Couleur au survol */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-button {
+    background-color: #007BFF; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    margin: 10px; 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.modal-button:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05); 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 
 </style>

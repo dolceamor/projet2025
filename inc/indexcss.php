@@ -91,7 +91,7 @@ a:hover{
     display: grid;
     grid-template-columns: 3fr 7fr 2fr;
     grid-template-areas: "sidebar main extrabar";
-    gap: 2rem;
+    gap: 4rem;
     height: 100%;
 }
 /*sidebar*/
@@ -264,6 +264,7 @@ a:hover{
 .recent-orders{
     margin-top: 4rem;
 }
+
 .recent-orders .ro-title{
     display: flex;
     justify-content: space-between;
@@ -315,25 +316,77 @@ a:hover{
          gap: 10px;
 }
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-.modal-content {
-   background-color: #fefefe;
-   margin: 5% auto;
-   padding: 20px;
-   border: 1px solid #888;
-   width: 300px;
- }
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 25px;
+            color: #Ff7f00;
+        }
+
+        
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top:3px;
+            
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #Ff7f00;
+        }
+
 
 .chart-container {
    width: 98%;

@@ -60,6 +60,76 @@ try {
 }
 ?>
 
+<?php
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "mon_site"; 
+$port = 3307;
+
+try {
+    $pdo = new PDO("mysql:host=$servername;port=$port;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars($_POST['applicantName']);
+        $firstName = htmlspecialchars($_POST['applicantFirstName']);
+        $contact = htmlspecialchars($_POST['applicantContact']);
+        $email = htmlspecialchars($_POST['applicantEmail']);
+        $jobPosterEmail = htmlspecialchars($_POST['jobPosterEmail']);
+
+        // Gestion du téléchargement du CV
+        if (isset($_FILES['cv']) && $_FILES['cv']['error'] == UPLOAD_ERR_OK) {
+            $cvPath = 'uploads/' . basename($_FILES['cv']['name']);
+            move_uploaded_file($_FILES['cv']['tmp_name'], $cvPath);
+
+            // Préparer l'e-mail avec PHPMailer
+            $mail = new PHPMailer(true);
+            try {
+                // Paramètres du serveur SMTP
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Utilisez votre serveur SMTP
+                $mail->SMTPAuth = true;
+                $mail->Username = 'blanchetchuisse68@gmail.com'; // Votre adresse e-mail
+                $mail->Password = 'efmwyaiuoyjrmrwa'; // Votre mot de passe
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                // Destinataires
+                $mail->setFrom($email, $name);
+                $mail->addAddress($jobPosterEmail);
+
+                // Contenu
+                $mail->isHTML(true);
+                $mail->Subject = "Nouvelle candidature pour l'offre d'emploi";
+                $mail->Body = "Nom : $name<br>Prénom : $firstName<br>Contact: $contact <br>Email: $email<br><br>CV : $cvPath";
+
+                // Envoyer l'e-mail
+                $mail->send();
+
+                // Insérer dans la base de données
+                $stmt = $pdo->prepare("INSERT INTO applications (name, firstname, contact, email, cv) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([$name, $firstName, $contact, $email, $cvPath]);
+
+                echo "Votre candidature a été envoyée avec succès !";
+            } catch (Exception $e) {
+                echo "Erreur lors de l'envoi de votre candidature: {$mail->ErrorInfo}";
+            }
+        } else {
+            echo "Erreur lors du téléchargement du CV.";
+        }
+    } else {
+        echo "Méthode de requête non autorisée.";
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -119,14 +189,17 @@ li {
     display: block;
     margin: 10px auto;
     margin-left:10px;
+    
 }
 
 .postuler-button {
     background-color: #Ff7f00;
     color: white;
     border: none;
+    border-radius: 5px; 
     padding: 10px 15px;
     cursor: pointer;
+
 }
 
 .modal {
@@ -216,7 +289,7 @@ li {
                         <p>Email: <?php echo htmlspecialchars($offre['email']); ?></p>
                         <p>Téléphone: <?php echo htmlspecialchars($offre['phone']); ?></p>
                         <p>Services: <?php echo htmlspecialchars($offre['services']); ?></p>
-                        <p>Salaire: <?php echo htmlspecialchars($offre['salary']); ?> €</p>
+                        <p>Salaire: <?php echo htmlspecialchars($offre['salary']); ?> FCFA</p>
                         <p>Date: <?php echo htmlspecialchars($offre['date']); ?></p>
                         
                         <button class="postuler-button" onclick="openModal()">Postuler</button>
@@ -234,7 +307,7 @@ li {
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h3>Formulaire de Candidature</h3>
-            <form id="applicationForm" method="post" enctype="multipart/form-data">
+     <form id="applicationForm" method="post" enctype="multipart/form-data">
     <label for="applicantName">Nom :</label>
     <input type="text" name="applicantName" id="applicantName" required>
     <br>
@@ -250,6 +323,7 @@ li {
     <label for="cvInput">Ajouter votre CV :</label>
     <input type="file" name="cv" id="cvInput" accept=".pdf,.doc,.docx" required>
     <br>
+    <input type="hidden" name="jobPosterEmail" value="blanchetchuisseu@gmail.com">
     <button type="submit">Envoyer</button>
 </form>
 
@@ -278,6 +352,6 @@ li {
             closeModal();
             return false; // Empêche la soumission réelle pour cet exemple
         }
-    </script>
+</script>
 
 </html>

@@ -20,4 +20,45 @@
             </div>
         </footer>
       
-        
+        footer {
+    background-color: #382405;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 1170px;
+    height:140px;
+    margin: 0 auto;
+    margin-top:10px;
+    display: flex;
+    justify-content:space-between;
+}
+
+
+
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size:20px;
+    display: block;
+    margin-top:7px;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+    color:#Ff7f00;
+}
+.footer-content p{
+    font-size:20px;   
+}
+.reseau .icon{
+    margin-top:7px;
+    font-size:25px;
+    
+}
+
+
+
+

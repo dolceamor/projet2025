@@ -55,6 +55,7 @@ try {
             echo "Aucun fichier n'a été téléchargé ou une erreur s'est produite lors de l'upload.";
         }
     }
+    
 } catch (PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }
@@ -149,11 +150,11 @@ try {
                     </div>
                     <div class="form-group">
                         <label for="salary">Proposer un salaire :</label>
-                        <input type="number" id="salary" name="salary" required placeholder="Montant en euros">
+                        <input type="number" id="salary" name="salary" required placeholder="Montant en FCFA">
                    </div>
                    <div class="form-group">
                     <label for="salary">Inserrer la date du jour:</label>
-                    <input type="date" id="salary" name="date" required placeholder="Montant en euros">
+                    <input type="date" id="salary" name="date" required >
                </div>
             
                     <button type="submit" class="publish-button">Poster l'offre</button>
