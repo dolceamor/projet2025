@@ -61,9 +61,10 @@ try {
 ?>
 
 <?php
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../vendor/autoload.php';
 
 $servername = "localhost"; 
 $username = "root"; 
