@@ -99,6 +99,8 @@ a:hover{
     grid-area: sidebar;
     width: 250px;
     padding: 10px 0 10px 6px;
+    background-color: rgba(255, 255, 255, 0.9);
+    height:55%;
     
     
     
@@ -233,6 +235,9 @@ a:hover{
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+}
+.card-body h1{
+    font-size:15px;
 }
 .card-body .card-progress{
     display: flex;

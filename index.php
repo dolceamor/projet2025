@@ -28,7 +28,7 @@
                     <li class="item">
                         <a href="#">
                             <span><i class="fa-solid fa-house"></i></span>
-                            <span>Acccueil</span>
+                            <span>Accueil</span>
                         </a>
                     </li>  
                     <li class="item">
@@ -77,7 +77,7 @@
                     
 
                      <li class="item">
-                        <a href="#">
+                        <a href="accueil.php">
                             <span><i class="fa-solid fa-right-from-bracket" id="icon"></i></span>
                             <span>Deconnexion</span>
                         </a>
@@ -98,7 +98,7 @@
                         <div class="card-body">
                             <div class="card-info">
                                 <h3>Services offerts</h3>
-                                <h1>2.03M</h1>
+                                <h1>Sur 1 Mois</h1>
                             </div>
                             <div class="card-progress">
                                 <svg width="90" height="90"class="stroke-yellow">
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small>sur les 48h precedentes</small>
+                            <small>Tous mes clients suite au contact de mon profil sur ServiceLink</small>
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                         </div>
                         <div class="card-body">
                             <div class="card-info">
-                                <h3>Avis des clients</h3>
-                                <h1>2.03M</h1>
+                                <h3>Total d'offres</h3>
+                                <h1>Sur 1 Mois</h1>
                             </div>
                             <div class="card-progress">
                                 <svg width="90" height="90"class="stroke-fuscha">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small>sur les 48h precedentes</small>
+                            <small>Tous les offres aux quelles jai souscrire sur ServiceLink</small>
                         </div>
                     </div>
                 </div>
@@ -148,8 +148,8 @@
                         </div>
                         <div class="card-body">
                             <div class="card-info">
-                                <h3>Revenu genere</h3>
-                                <h1>2.03M</h1>
+                                <h3>Avis des clients</h3>
+                                <h1>Sur 1 Mois</h1>
                             </div>
                             <div class="card-progress">
                                 <svg width="90" height="90" class="stroke-cyan">
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small>sur les 48h precedentes</small>
+                            <small>Les likes de mon profil par mes clients sur ServiceLink</small>
                         </div>
                     </div>
                 </div>

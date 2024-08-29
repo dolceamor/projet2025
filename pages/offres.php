@@ -189,7 +189,9 @@ li {
     max-width: 80px;
     display: block;
     margin: 10px auto;
-    margin-left:10px;
+    margin-left:40%;
+    border-radius:50%;
+    object-fit: cover;
     
 }
 
@@ -198,6 +200,7 @@ li {
     color: white;
     border: none;
     border-radius: 5px; 
+    margin-left:40%;
     padding: 10px 15px;
     cursor: pointer;
 

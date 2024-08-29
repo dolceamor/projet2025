@@ -39,7 +39,7 @@ try {
             <div class="menu">
                 <ul>
                     <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Prestataires</a></li>
+                    <li><a href="connexionprestataire">Prestataires</a></li>
                     <li><a href="#">Demandeurs</a></li>
                     <li><a href="offres.php">Annonces</a></li>
                     <li><a href="#" onclick="openAccountModal()">Compte</a></li>
@@ -89,11 +89,11 @@ try {
     </div>
 </div>
  <div class="recent-offers">
-    <h2>Offres Récentes</h2>
+    <h2>OFFRES RECENTES</h2>
     <ul>
         <?php foreach ($recentOffers as $offer): ?>
             <li>
-                <img src="<?php echo htmlspecialchars($offer['photo']); ?>" alt="Photo" class="offre-photo">
+                <img src="<?php echo htmlspecialchars($offer['photo']); ?>" alt="Photo" class="offre-photo" >
                 <h3><?php echo htmlspecialchars($offer['name']); ?></h3>
                 <p>Email: <?php echo htmlspecialchars($offer['email']); ?></p>
                 <p>Téléphone: <?php echo htmlspecialchars($offer['phone']); ?></p>
@@ -144,6 +144,10 @@ try {
                     <h1>Liens utiles</h1>
                     <a href="#">Politique de confidentialité</a>
                     <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Prestataire</a>
+                    <a href="#">Demandeur</a>
+                    <a href="#">Annonces</a>
+                    <a href="#">Compte</a>
                     <a href="#">Aide</a>
                 </ul>
                </div>

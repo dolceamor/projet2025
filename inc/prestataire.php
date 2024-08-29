@@ -21,7 +21,6 @@ ul{
 }
 a{
     text-decoration: none;
-    color:  #fff;
     transition: color 0.3s ease-in-out;
 }
 
@@ -41,7 +40,7 @@ h3{
     width: 750px;
     height: 530px;
     background: transparent;
-    border: 2px solid rgb(0, 0, 128);
+    border: 2px solid beige;
     overflow: hidden;
     background-color:dodgerblue;
     
@@ -129,6 +128,7 @@ h3{
 }
 .form-box.register .input-box{
     margin-left: 23px;
+    
 }
 .input-box input:focus,
 .input-box input:valid{
@@ -154,7 +154,7 @@ h3{
     color:#fff;
     
 }
-.input-box i {
+.input-box span {
     position: absolute;
     top: 50%;
     right: 0;
@@ -176,7 +176,7 @@ h3{
     border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
-    color:rgb(0, 0, 128);
+    color:#382405;
     font-weight: 600;
     z-index: 1;
     overflow: hidden;
@@ -205,7 +205,7 @@ h3{
     margin: 20px 0 10px;
 }
 .logreg-link p a{
-    color: #efff;
+    color: #382405;
     text-decoration: none;
     font-weight: 600;
 }
@@ -279,13 +279,13 @@ h3{
 }
 .info-text h2{
     font-size: 30px;
-    color:rgb(0, 0, 128);
+    color:#382405;
     line-height: 1.3;
 
 }
 .info-text p{
     font-size: 16px;
-    color:rgb(0, 0, 128)
+    color:#382405;
 }
 .wrapper .bg-animate{
     position: absolute;
@@ -313,7 +313,7 @@ h3{
     left: 250px;
     width: 850px;
     height: 700px;
-    background: rgb(0, 0, 128);
+    background-color:dodgerblue;
     border-top: 3px solid #fff;
     /*transform: rotate(-11deg) skewY(-41deg);*/
     transform: rotate(0) skewY(0);

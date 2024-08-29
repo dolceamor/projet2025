@@ -81,10 +81,11 @@ ul li a:hover{
 }
 .btn{
     width: 100px;
-    height: 40px;
+    height: 42px;
     background: #Ff7f00;
     border: 2px solid #Ff7f00;
     margin-top: 13px;
+    margin-right:5px;
     color: #fff;
     font-size: 15px;
     border-bottom-right-radius: 5px;
@@ -172,7 +173,7 @@ margin-bottom: 20px; /* Espace en dessous du titre */
 }
 
 .images img {
-    max-width: 250px; 
+    max-width: 200px; 
     margin: 0 15px; 
     border-radius: 8px; 
     border: 2px solid #fff; 
@@ -229,7 +230,9 @@ padding-left:20px;
     max-width: 80px;
     display: block;
     margin: 10px auto;
-    margin-left:20px;
+    margin-left:40%;
+    border-radius:50%;
+    object-fit: cover;
     
 }
 .recent-offers h3{
@@ -241,7 +244,7 @@ padding-left:20px;
     color: white;
     border: none;
     border-radius: 5px; 
-    margin-left:20px;
+    margin-left:40%;
     padding: 10px 15px;
     cursor: pointer;
 }
@@ -256,6 +259,7 @@ padding-left:20px;
     border: none; 
     border-radius: 5px; 
     padding: 10px 20px; 
+    margin-left:48%;
     font-size: 16px; 
     cursor: pointer; 
     transition: background-color 0.3s, transform 0.3s; 
@@ -350,7 +354,7 @@ button[type="submit"]:hover {
 
 .footer-content {
     max-width: 1170px;
-    height:140px;
+    height:250px;
     margin: 0 auto;
     margin-top:10px;
     display: flex;
@@ -361,6 +365,7 @@ button[type="submit"]:hover {
 .footer-menu a {
     color: white;
     text-decoration: none;
+    text-align:center;
     font-size:20px;
     display: block;
     margin-top:7px;
@@ -371,7 +376,8 @@ button[type="submit"]:hover {
     color:#Ff7f00;
 }
 .footer-content p{
-    font-size:20px;   
+    font-size:20px;
+    padding-top:20%;   
 }
 .reseau .icon{
     margin-top:7px;

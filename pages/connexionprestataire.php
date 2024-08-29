@@ -4,62 +4,6 @@
 $hote = 'localhost';
 $nom_base = 'mon_site';
 $utilisateur = 'root';
-$mot_de_passe = '';
-$port = 3307;
-
-try {
-    $conn = new PDO("mysql:host=$hote;port=$port;dbname=$nom_base", $utilisateur, $mot_de_passe);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if (isset($_POST['connect'])) {
-        $email = $_POST['email'] ?? null;
-        $mot_de_passe = $_POST['mot_de_passe'] ?? null;
-
-        // Vérifiez que les champs requis ne sont pas vides
-        if (empty($email) || empty($mot_de_passe)) {
-            die("Veuillez remplir tous les champs");
-        }
-
-        // Vérifiez si l'email existe déjà
-        $sql = "SELECT * FROM connexionprestataire WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            die("Cet email est déjà utilisé.");
-        }
-
-        $mot_de_passe_hashe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-
-        // Insérer l'utilisateur
-        $sql = "INSERT INTO connexionprestataire(email, mot_de_passe) VALUES (:email, :mot_de_passe)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':mot_de_passe', $mot_de_passe_hashe);
-        $stmt->execute();
-
-        echo "Inscription réussie !";
-
-        
-    }
-
-} catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-}
-
-$conn = null;
-
-?>
-
-<?php
-
-// Informations d'identification de la base de données
-$hote = 'localhost';
-$nom_base = 'mon_site';
-$utilisateur = 'root';
 $mot_de_passe ='';
 $port=3307;
 
@@ -79,7 +23,20 @@ try {
       die("Veuillez remplir tous les champs");
     }
 
-    $mot_de_passe_hashe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+    // Vérifiez si l'email ou le mot de passe existe déjà
+    $sql = "SELECT * FROM inscriptionprestataire WHERE email = :email OR mot_de_passe = :mot_de_passe";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mot_de_passe', $mot_de_passe);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        echo "Cet email ou ce mot de passe est déjà utilisé. Veuillez en choisir un autre.";
+    } else {
+        // Hachez le mot de passe avant de l'enregistrer
+        $mot_de_passe_hashe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+    }
+
 
     $sql = "INSERT INTO inscriptionprestataire(nom_et_prenom, contact, categorie_de_service, email, mot_de_passe) VALUES (:nom_et_prenom, :contact, :categorie_de_service, :email, :mot_de_passe)";
     $stmt = $conn->prepare($sql);
@@ -91,8 +48,9 @@ try {
     $stmt->bindParam(':mot_de_passe', $mot_de_passe_hashe);
 
     $stmt->execute();
-
     echo "Inscription réussie !";
+    header("Location: pages/accueil.php");
+     exit; // Assurez-vous d'appeler exit après la redirection
   }
 
 } catch(PDOException $e) {
@@ -103,6 +61,57 @@ try {
 
 $conn = null;
 
+?>
+
+
+<?php
+// Informations d'identification de la base de données
+$hote = 'localhost';
+$nom_base = 'mon_site';
+$utilisateur = 'root';
+$mot_de_passe = '';
+$port = 3307;
+
+try {
+    $conn = new PDO("mysql:host=$hote;port=$port;dbname=$nom_base", $utilisateur, $mot_de_passe);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if (isset($_POST['connect'])) {
+        $email = $_POST['email'] ?? null;
+        $mot_de_passe = $_POST['mot_de_passe'] ?? null;
+
+        // Vérifiez que les champs requis ne sont pas vides
+        if (empty($email) || empty($mot_de_passe)) {
+            die("Veuillez remplir tous les champs");
+        }
+
+        // Préparez la requête pour récupérer l'utilisateur par email
+        $sql = "SELECT * FROM inscriptionprestataire WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        // Récupérez l'utilisateur
+        $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifiez si l'utilisateur existe et si le mot de passe est correct
+        if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
+            // Connexion réussie
+            echo "Connexion réussie ! Bienvenue, " . htmlspecialchars($utilisateur['nom']) . ".";
+            // Redirigez vers la page d'accueil ou une autre page
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "Identifiants invalides.";
+        }
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -128,12 +137,12 @@ $conn = null;
                       <div class="input-box animation"style="--i:1; --j:22;">
                          <input type="email" name="email" required>
                          <label>e-mail</label>
-                         <i class="fa-regular fa-envelope"></i>
+                          <span><i class="fa-regular fa-envelope"></i></span>
                       </div>
                       <div class="input-box animation"style="--i:2; --j:23;" >
                            <input type="password" name="mot_de_passe" required>
                            <label>mot de passe</label>
-                          <i class="fas fa-lock-open "></i>
+                          <span><i class="fas fa-lock "></i></span>
             
                       </div>
                        <button type="submit" name="connect" class="btn animation" style="--i:3; --j:24;">Se connecter</button>
@@ -146,7 +155,7 @@ $conn = null;
         
             <div class="info-text login">
                 <h2 class="animation"style="--i:0;--j:20;">Heureux de vous revoire!!!</h2>
-                <p class="animation"style="--i:1;--j:21;">White Services est heureux de vous satisfaire</p>
+                <p class="animation"style="--i:1;--j:21;">ServiceLink est heureux de vous satisfaire</p>
             </div>
             <div class="form-box register">
                 <h2 class="animation"style="--i:17; --j:0;" id="my">Mon Profil</h2>
@@ -154,12 +163,12 @@ $conn = null;
                     <div class="input-box animation"style="--i:18; --j:1;">
                         <input type="text" name="nom_et_prenom" required>
                         <label>nom & prenom</label>
-                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span><i class="fa fa-users" aria-hidden="true"></i></span>
                     </div>
                     <div class="input-box animation"style="--i:18; --j:1;">
                         <input type="tel" name="contact"required>
                         <label>contact</label>
-                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span><i class="fa fa-phone" aria-hidden="true"></i></span>
                     </div>
 
                     <div class="input-box animation"style="--i:18; --j:1;">
@@ -170,12 +179,12 @@ $conn = null;
                     <div class="input-box animation"style="--i:19; --j:3;">
                         <input type="email" name="email"required>
                         <label>e-mail</label>
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
                     </div>
                     <div class="input-box animation"style="--i:20; --j:4;">
                         <input type="password" name="mot_de_passe" required>
                         <label>mot de passe</label>
-                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <span><i class="fa fa-key" aria-hidden="true"></i></span>
                     </div>
                     <button type="submit" name="signup"class="btn animation"style="--i:21; --j:5;">S'inscrire</button>
                     <div class="logreg-link animation"style="--i:22;">
@@ -184,9 +193,8 @@ $conn = null;
                 </form>
             </div>
             <div class="info-text register">
-                <h2 class="animation"style="--i:17; --j:0;">White Services vous souhaite la bienvenue !!!</h2>
-                <p class="animation"style="--i:18; --j:1;">Nous vous accompagnons dans votre carriere professionnelle en vous aidant a obtenir un emploi
-                    tout en esperant que vous en sortirez satisfait de nos services <i class="fa fa-smile-o" aria-hidden="true"></i>
+                <h2 class="animation"style="--i:17; --j:0;">ServiceLink vous souhaite la bienvenue !!!</h2>
+                <p class="animation"style="--i:18; --j:1;">Apres votre inscription votre profil sera cree ce qui permettra aux clients de vous contacter<i class="fa fa-smile-o" aria-hidden="true"></i>
             </div>
             </div>
             

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : lun. 26 août 2024 à 19:11
+-- Généré le : jeu. 29 août 2024 à 19:29
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -46,51 +46,15 @@ INSERT INTO `applications` (`id`, `name`, `firstname`, `contact`, `email`, `cv`)
 (3, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
 (4, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
 (5, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
-(6, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `connexion`
---
-
-CREATE TABLE `connexion` (
-  `id` int(255) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `mot_de_passe` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `connexion`
---
-
-INSERT INTO `connexion` (`id`, `email`, `mot_de_passe`) VALUES
-(0, 'vanessa@gmail.com', '$2y$10$04Dzra1liOuBOCflTlTtKuH'),
-(0, 'angedanou@gmail.com', '$2y$10$aHi2B2PzqzuBd6Shj7Ee.eN'),
-(0, 'vanessa@gmail.com', '$2y$10$RRoMvdcD2QRRH7dU0XDT1.c'),
-(0, 'angedanou@gmail.com', '$2y$10$VdTMYUHL9dZc7kRutdEmFuP'),
-(0, 'blanchetchuisseu68@gmail.com', '$2y$10$xAlWS3Edy58E4dZXBXO9Uuk');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `connexionprestataire`
---
-
-CREATE TABLE `connexionprestataire` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mot_de_passe` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `connexionprestataire`
---
-
-INSERT INTO `connexionprestataire` (`id`, `email`, `mot_de_passe`) VALUES
-(1, 'angedonfack@gmail.com', '$2y$10$C3KdkSkBSxxtQ4sGk6o/ouqxtkmaYncfAQFjKlOmthgHugJE.8KCG'),
-(2, 'tchuisse@gmail.com', '$2y$10$NJbJFAFBFoefmkuy2CYDqe3zo2v99NzQkNf4U/xQdyc9Snw1lwn3S'),
-(3, 'tchuisseu@gmail.com', '$2y$10$pJ9N8n6ENMMjIsHc7p9Sf.V1eAWGp4v20QGvWPbWnSc/jtblcc8S2');
+(6, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(7, 'tchuisse', 'blanche', '987654', 'blanchetchuisseu68@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(8, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(9, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(10, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(11, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(12, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(13, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf'),
+(14, 'tchuisseu', 'blanche', '77666666', 'b@gmail.com', 'uploads/Exercices BD1._022109.pdf');
 
 -- --------------------------------------------------------
 
@@ -114,7 +78,14 @@ CREATE TABLE `inscription` (
 INSERT INTO `inscription` (`id`, `nom`, `prenom`, `contact`, `email`, `mot_de_passe`) VALUES
 (0, 'mafre', 'blanche', 2147483647, 'blanchetchuisseu68@gmail.com', '$2y$10$S71wN.ennZjG08FRYW5es.s'),
 (0, 'mafre', 'blanche', 2147483647, 'vanessa@gmail.com', '$2y$10$v0J41FD07iEwEvLbQTCmBec'),
-(0, 'wandjie', 'vanessa', 657839263, 'blanchetchuisseu68@gmail.com', '$2y$10$wk8CDB/vkqNslHYJp0J/5e3');
+(0, 'wandjie', 'vanessa', 657839263, 'blanchetchuisseu68@gmail.com', '$2y$10$wk8CDB/vkqNslHYJp0J/5e3'),
+(0, 'mafre', 'blanche', 2147483647, 'b@gmail.com', '$2y$10$.YsyS6irOzfHUeabDa/R3u8'),
+(0, 'mafre', 'blanche', 2147483647, 'b@gmail.com', '$2y$10$O7mVwhKcntOFGeAQ0L5Sde1'),
+(0, 'mafre', 'vanessa', 2147483647, 'manuella@gmail.com', '$2y$10$45c.olbL8XjSZmHnTcfR6eW'),
+(0, 'mafre', 'vanessa', 2147483647, 'manou@gmail.com', '$2y$10$isRwKoH7GFSrRTE6IZkSBOI'),
+(0, 'mafre', 'blanche', 2147483647, 'vaness@gmail.com', '$2y$10$kIS8NsaQ29sH5mlfTEoVMuH'),
+(0, 'root', 'bbb', 8888, 'bn@gmail.com', '$2y$10$gxUX/8ixDQPieG8m6WaaJui'),
+(0, 'ebami', 'lili', 123456767, 'ebam@gmail.com', '$2y$10$lJH72pNwM/BiMgjmwPKZyeO');
 
 -- --------------------------------------------------------
 
@@ -137,7 +108,8 @@ CREATE TABLE `inscriptionprestataire` (
 
 INSERT INTO `inscriptionprestataire` (`id`, `nom_et_prenom`, `contact`, `categorie_de_service`, `email`, `mot_de_passe`) VALUES
 (1, 'BLANCHE TCHUISSEu', 687798888, 'coiffeuse', 'blanchetchuisseu68@gmail.com', '$2y$10$rwcLfFUcKaCVaM5SZ0ZJu.zK6JA01RDVFjkB9YIrEbs.o3bgeuN1G'),
-(2, 'tchuisseu blanche', 657839263, 'coiffeuse', 'blanchetchuisse@gmail.com', '$2y$10$hQDn0ychPKy4SWq.4Hz1leJlTteF.wz5vODbzDHJo.k89wCfpbldS');
+(2, 'tchuisseu blanche', 657839263, 'coiffeuse', 'blanchetchuisse@gmail.com', '$2y$10$hQDn0ychPKy4SWq.4Hz1leJlTteF.wz5vODbzDHJo.k89wCfpbldS'),
+(3, 'yvanna', 124567890, 'couturiere', 'yvanna@gmail.com', '$2y$10$3z/015MgVH/TkGcB76wG1.nsYIU9gTViFW69TomJJp0Fx7AfUuy.6');
 
 -- --------------------------------------------------------
 
@@ -161,14 +133,10 @@ CREATE TABLE `offres` (
 --
 
 INSERT INTO `offres` (`id`, `name`, `email`, `phone`, `photo`, `services`, `salary`, `date`) VALUES
-(2, 'tchuisseu', 'blanchetchuisseu68@gmail.com', '657839263', 'uploads/Snapchat-1519104219_103536.jpg', 'Infirmier', 32, '2024-07-30'),
-(4, 'ange', 'angedonfack@gmail.com', '677889900', 'uploads/Snapchat-30005744_103522.jpg', 'Infirmier', 2, '2024-08-14'),
 (8, 'syntiche', 'syntiche@gmail.com', '677899099', 'uploads/fe96c65cd10dd4627acdacf7105e966d.jpg', 'Comptable', 26, '2024-08-28'),
-(9, 'ange', 'blanchetchuisse@gmail.com', '6778899000', 'uploads/04aab8bd2b295486d1675e802a4b9495.jpg', 'Coiffure', 14, '2024-08-14'),
-(10, 'tchuisseu', 'blanchetchuisse@gmail.com', '6778899000', 'uploads/421f63d0749ea0f1e91db21b02bd0a6c.jpg', 'Coiffure', 12, '2024-02-20'),
-(11, 'BLANCHE TCHUISSEU', 'blanchetchuisseu68@gmail.com', '0123456789', 'uploads/Snapchat-1948734591_103508.jpg', 'Electriciens', 100, '2024-08-28'),
-(12, 'BLANCHE TCHUISSEU', 'blanchetchuisseu68@gmail.com', '0123456789', 'uploads/Snapchat-1948734591_103508.jpg', 'Electriciens', 100, '2024-08-28'),
-(13, 'tchuisseu', 'blanchetchuisse@gmail.com', '6778899000', 'uploads/Snapchat-398887682_103529.jpg', 'Comptable', 222, '2024-07-29');
+(14, 'peyebouo', 'manuella@gmail.com', '6778899000', 'uploads/5c0187a54205a22881e05e29c38b3fbe.jpg', 'Repetiteur', 50, '2024-08-13'),
+(15, 'ebami', 'ebami@gmail.com657839253', '657833222', 'uploads/9b574b84a47cd814d487c7941a912bec.jpg', 'Plombier', 70, '2024-08-02'),
+(16, 'tchuisseu', 'blanchetchuisse@gmail.com', '6778899000', 'uploads/img.jpg', 'Comptable', 200, '2024-01-30');
 
 --
 -- Index pour les tables déchargées
@@ -179,13 +147,6 @@ INSERT INTO `offres` (`id`, `name`, `email`, `phone`, `photo`, `services`, `sala
 --
 ALTER TABLE `applications`
   ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `connexionprestataire`
---
-ALTER TABLE `connexionprestataire`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Index pour la table `inscriptionprestataire`
@@ -208,25 +169,19 @@ ALTER TABLE `offres`
 -- AUTO_INCREMENT pour la table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `connexionprestataire`
---
-ALTER TABLE `connexionprestataire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `inscriptionprestataire`
 --
 ALTER TABLE `inscriptionprestataire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `offres`
 --
 ALTER TABLE `offres`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
