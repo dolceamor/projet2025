@@ -134,10 +134,9 @@ $conn = null;
                 <form method="post">
                     <h1>Creer un compte</h1>
                     <div class="social-container">
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    
-                
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                     <span> utiliser compte gmail</span>
                     <input type="text" placeholder="Nom" name="nom" required>
@@ -153,8 +152,9 @@ $conn = null;
                 <form method="post">
                     <h2>Se connecter</h2>
                     <div class="social-container">
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                     <span> je n'ai pas de compte</span>
                     <input type="email" placeholder="E-mail" name="email"required>

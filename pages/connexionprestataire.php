@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Informations d'identification de la base de données
 $hote = 'localhost';
@@ -48,8 +49,7 @@ try {
     $stmt->bindParam(':mot_de_passe', $mot_de_passe_hashe);
 
     $stmt->execute();
-    echo "Inscription réussie !";
-    header("Location: pages/accueil.php");
+    header("Location: index.php");
      exit; // Assurez-vous d'appeler exit après la redirection
   }
 
@@ -96,8 +96,7 @@ try {
 
         // Vérifiez si l'utilisateur existe et si le mot de passe est correct
         if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-            // Connexion réussie
-            echo "Connexion réussie ! Bienvenue, " . htmlspecialchars($utilisateur['nom']) . ".";
+            
             // Redirigez vers la page d'accueil ou une autre page
             header("Location: index.php");
             exit;
@@ -132,7 +131,7 @@ $conn = null;
                 <span class="bg-animate"></span>
                 <span class="bg-animate2"></span>
                 <div class="form-box login">
-                   <h2 class="animation" style="--i:0; --j:21;">Consulter compte</h2>
+                   <h2 class="animation" style="--i:0; --j:21;">SE CONNECTER</h2>
                    <form method="post" action="#">
                       <div class="input-box animation"style="--i:1; --j:22;">
                          <input type="email" name="email" required>
@@ -158,7 +157,7 @@ $conn = null;
                 <p class="animation"style="--i:1;--j:21;">ServiceLink est heureux de vous satisfaire</p>
             </div>
             <div class="form-box register">
-                <h2 class="animation"style="--i:17; --j:0;" id="my">Mon Profil</h2>
+                <h2 class="animation"style="--i:17; --j:0;" id="my">S'INSCRIRE</h2>
                 <form method="post" action="#">
                     <div class="input-box animation"style="--i:18; --j:1;">
                         <input type="text" name="nom_et_prenom" required>
@@ -186,15 +185,17 @@ $conn = null;
                         <label>mot de passe</label>
                         <span><i class="fa fa-key" aria-hidden="true"></i></span>
                     </div>
-                    <button type="submit" name="signup"class="btn animation"style="--i:21; --j:5;">S'inscrire</button>
+                    <button type="submit" name="signup"class="btn animation"style="--i:21; --j:5;">Adherer</button>
                     <div class="logreg-link animation"style="--i:22;">
-                        <p>vous possedez profil?<a href="#" class="login-link">Se connecter</a></p>
+                        <p>j'ai un compte?<a href="#" class="login-link">Se connecter</a></p>
                     </div>
                 </form>
             </div>
             <div class="info-text register">
                 <h2 class="animation"style="--i:17; --j:0;">ServiceLink vous souhaite la bienvenue !!!</h2>
-                <p class="animation"style="--i:18; --j:1;">Apres votre inscription votre profil sera cree ce qui permettra aux clients de vous contacter<i class="fa fa-smile-o" aria-hidden="true"></i>
+                <p class="animation"style="--i:18; --j:1;">Apres votre inscription votre profil sera cree ce qui permettra aux clients de vous contacter
+                <i class="fa-regular fa-face-smile"></i>
+                </P>
             </div>
             </div>
             

@@ -95,55 +95,58 @@ a:hover{
     height: 100%;
 }
 /*sidebar*/
-.main-sidebar{
+.main-sidebar {
     grid-area: sidebar;
+    position: fixed; /* Fixe la barre latérale */
     width: 250px;
     padding: 10px 0 10px 6px;
     background-color: rgba(255, 255, 255, 0.9);
-    height:55%;
-    
-    
-    
+    height: 100%; /* Hauteur de 100% pour occuper tout l'espace vertical */
+    overflow-y: auto; /* Permet le défilement si le contenu dépasse */
 }
-.main-sidebar .aside-header{
+
+.main-sidebar .aside-header {
     display: flex;
     justify-content: space-between;
-    align-items: 4rem;
+    align-items: center; /* Corrigé pour aligner correctement */
 }
-.main-title{
+
+.main-title {
     font-size: 40px;
     line-height: 1.8;
 }
 
-.aside-header .main-title{
+.aside-header .main-title {
     display: flex;
     align-items: center;
-    
-
 }
-.aside-header .close{
+
+.aside-header .close {
     padding-right: 10px;
     font-weight: bold;
     display: none;
 }
 
-.main-sidebar .sidebar{
+.main-sidebar .sidebar {
     position: relative;
-    height: 88%;
+    height: auto; /* Ajustez la hauteur si nécessaire */
     display: flex;
     justify-content: center;
     padding-top: 1rem;
     padding-right: 1rem;
-    width: 250px;
+    width: 100%; /* Utilise toute la largeur disponible */
 }
-.sidebar .list-items{
-    width: 120%;
+
+.sidebar .list-items {
+    width: 100%; /* Ajustez pour s'assurer que la liste utilise toute la largeur */
 }
-.list-items li:last-child{
+
+.list-items li:last-child {
     position: absolute;
     width: 100%;
 }
-.list-items .item a{
+
+.list-items .item a {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -154,34 +157,38 @@ a:hover{
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
-.list-items .item a:hover{
-    color:   #77B5FE;
+
+.list-items .item a:hover {
+    color: #77B5FE;
     transform: translateX(5%);
 }
-.list-items .item a:active, .list-items .item a.active{
-    color:var(--teext-color-primary);
+
+.list-items .item a:active,
+.list-items .item a.active {
+    color: var(--text-color-primary);
     border-left: 7px solid transparent;
     border-left-color: #ffffff;
-    background-color:#77B5FE;
-    
+    background-color: #77B5FE;
 }
 
-.item .message-count{
+.item .message-count {
     background-color: var(--fuscha);
     text-align: center;
-    border-radius: var(--border-raduis-4);
-    color:var(--light);
+    border-radius: var(--border-radius-4);
+    color: var(--light);
     border: 1px solid var(--text-color-secondary);
     padding: 0 8px;
     transition: all 0.3s ease-in-out;
 }
+
 .item a:hover .message-count,
 .item a:active .message-count,
-.item a.active .message-count{
-    background-color:  #fff;
-    color:#77B5FE;
-    border: 1px solid  #77B5FE;
+.item a.active .message-count {
+    background-color: #fff;
+    color: #77B5FE;
+    border: 1px solid #77B5FE;
 }
+
 
 
 /* ************* Main************* */
@@ -406,6 +413,8 @@ h2 {
    text-align: center;
    color: #333;
 }
+
+
 
 
 /* **************extrabar*********** */

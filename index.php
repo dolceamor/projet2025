@@ -1,3 +1,24 @@
+<?php
+// Configuration de la base de données
+$host = 'localhost'; // Adresse du serveur
+$db = 'mon_site'; // Nom de la base de données
+$user = 'root'; // Nom d'utilisateur
+$pass = ''; // Mot de passe
+$port = 3307;
+
+try {
+    // Connexion à la base de données
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   // Récupération des offres d'emploi
+$stmt = $pdo->query("SELECT name, services, salary,phone, date FROM offres ORDER BY date DESC");
+$offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -144,7 +165,7 @@
                 <div class="card">
                     <div class="card-container">
                         <div class="card-header">
-                            <span><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                            <span><i class="fa-solid fa-heart"></i></span>
                         </div>
                         <div class="card-body">
                             <div class="card-info">
@@ -168,73 +189,38 @@
                 </div>
             </div>
             <section class="recent-orders">
-                <div class="ro-title">
-                    <h2 class="recent-orders-tiltle">Demandes recentes</h2>
-                    <a href="#" class="show all">Tout afficher</a>
-                </div>
-                <table id="jobTable">
-    <thead>
-        <tr>
-            <th>STRUCTURE</th>
-            <th>SECTEUR D'ACTIVITE</th>
-            <th>SALAIRE</th>
-            <th>DATE DE PUBLICAITION</th>
-            <th>ACTIONS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Mme Kessel</td>
-            <td>Ménagère</td>
-            <td>50.000 FCFA</td>
-            <td>maintenant</td>
-            <td class="action-buttons">
-                <button onclick="openModal(this)">Postuler</button>
-                <button onclick="deleteRow(this)">Refuser</button>
-            </td>
-        </tr>
-        <tr>
-            <td>KIM COMPANY</td>
-            <td>Receptionniste</td>
-            <td>60.000fcfa negociable</td>
-            <td>il y a 3min</td>
-            <td class="action-buttons">
-                <button onclick="openModal(this)">Postuler</button>
-                <button onclick="deleteRow(this)">Refuser</button>
-            </td>
-        </tr>
-        <tr>
-            <td>KMC</td>
-            <td>Techniciens de surface</td>
-            <td>70.000FCFA</td>
-            <td>il y a 1h</td>
-            <td class="action-buttons">
-                <button onclick="openModal(this)">Postuler</button>
-                <button onclick="deleteRow(this)">Refuser</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Msr Germain</td>
-            <td>Plombier</td>
-            <td>80.000fcfa</td>
-            <td>il y a 2h</td>
-            <td class="action-buttons">
-                <button onclick="openModal(this)">Postuler</button>
-                <button onclick="deleteRow(this)">Refuser</button>
-            </td>
-        </tr>
-        <tr>
-            <td>SONEOPAD YASSA</td>
-            <td>MAGASINIER</td>
-            <td>70.000fcfa</td>
-            <td>il y a 24h</td>
-            <td class="action-buttons">
-                <button onclick="openModal(this)">Postuler</button>
-                <button onclick="deleteRow(this)">Refuser</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="ro-title">
+        <h2 class="recent-orders-title">Demandes récentes</h2>
+        <a href="#" class="show all">Tout afficher</a>
+    </div>
+    <table id="jobTable">
+        <thead>
+            <tr>
+                <th>NOMS</th>
+                <th>SERVICES</th>
+                <th>SALAIRE</th>
+                <th>CONTACT</th>
+                <th>PUBLIER LE:</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($offres as $offre): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($offre['name']); ?></td>
+                    <td><?php echo htmlspecialchars($offre['services']); ?></td>
+                    <td><?php echo htmlspecialchars($offre['salary']); ?> FCFA</td>
+                    <td><?php echo htmlspecialchars($offre['phone']); ?></td>
+                    <td><?php echo htmlspecialchars($offre['date']); ?></td>
+                    <td class="action-buttons">
+                        <button onclick="openModal(this)">Postuler</button>
+                        <button onclick="deleteRow(this)">Refuser</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</section>
 
                     
 <div id="modal" class="modal">
