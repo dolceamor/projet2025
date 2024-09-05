@@ -1,70 +1,66 @@
 <?php
-session_start();
+session_start(); // Assurez-vous de démarrer la session
 
 // Informations d'identification de la base de données
 $hote = 'localhost';
 $nom_base = 'mon_site';
 $utilisateur = 'root';
-$mot_de_passe ='';
-$port=3307;
+$mot_de_passe = '';
+$port = 3307;
 
 try {
-  $conn = new PDO("mysql:host=$hote;port=$port;dbname=$nom_base", $utilisateur, $mot_de_passe);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = new PDO("mysql:host=$hote;port=$port;dbname=$nom_base", $utilisateur, $mot_de_passe);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  if(isset($_POST['signup'])){
-    $nom_et_prenom = $_POST['nom_et_prenom'] ?? null;
-    $contact = $_POST['contact'] ?? null;
-    $categorie_de_service = $_POST['categorie_de_service'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $mot_de_passe = $_POST['mot_de_passe'] ?? null;
+    if (isset($_POST['signup'])) {
+        $nom_et_prenom = $_POST['nom_et_prenom'] ?? null;
+        $contact = $_POST['contact'] ?? null;
+        $email = $_POST['email'] ?? null;
+        $mot_de_passe = $_POST['mot_de_passe'] ?? null;
+        $photo = $_FILES['photo']['name'] ?? null;
 
-    // Vérifiez que les champs requis ne sont pas vides
-    if(empty($nom_et_prenom) || empty($contact) || empty($categorie_de_service) || empty($email) || empty($mot_de_passe)) {
-      die("Veuillez remplir tous les champs");
+        // Vérifiez que les champs requis ne sont pas vides
+        if (empty($nom_et_prenom)  || empty($contact) || empty($mot_de_passe) || empty($photo)) {
+            die("Veuillez remplir tous les champs");
+        }
+
+        // Hachage du mot de passe
+        $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_BCRYPT);
+
+        // Déplacement de l'image téléchargée
+        $chemin_photo = 'uploads/' . basename($photo);
+        move_uploaded_file($_FILES['photo']['tmp_name'], $chemin_photo);
+
+        // Préparez la requête pour insérer l'utilisateur dans la base de données
+        $sql = "INSERT INTO inscriptionprestataire (nom_et_prenom,contact, email, mot_de_passe, photo) VALUES (:nom_et_prenom, :contact, :email, :mot_de_passe, :photo)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom_et_prenom', $nom_et_prenom);
+        $stmt->bindParam(':contact', $contact);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':mot_de_passe', $mot_de_passe_hash);
+        $stmt->bindParam(':photo', $chemin_photo);
+        $stmt->execute();
+
+        // Stockez les informations de l'utilisateur dans la session
+        $_SESSION['nom_et_prenom'] = $nom_et_prenom; // Récupérer le nom
+        $_SESSION['photo'] = $chemin_photo; // Récupérer le chemin de la photo
+
+        // Redirigez vers la page d'accueil ou une autre page
+        header("Location: ../index.php"); // Redirige vers le tableau de bord
+        exit;
     }
-
-    // Vérifiez si l'email ou le mot de passe existe déjà
-    $sql = "SELECT * FROM inscriptionprestataire WHERE email = :email OR mot_de_passe = :mot_de_passe";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':mot_de_passe', $mot_de_passe);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        echo "Cet email ou ce mot de passe est déjà utilisé. Veuillez en choisir un autre.";
-    } else {
-        // Hachez le mot de passe avant de l'enregistrer
-        $mot_de_passe_hashe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-    }
-
-
-    $sql = "INSERT INTO inscriptionprestataire(nom_et_prenom, contact, categorie_de_service, email, mot_de_passe) VALUES (:nom_et_prenom, :contact, :categorie_de_service, :email, :mot_de_passe)";
-    $stmt = $conn->prepare($sql);
-
-    $stmt->bindParam(':nom_et_prenom', $nom_et_prenom);
-    $stmt->bindParam(':contact', $contact);
-    $stmt->bindParam(':categorie_de_service', $categorie_de_service);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':mot_de_passe', $mot_de_passe_hashe);
-
-    $stmt->execute();
-    header("Location: index.php");
-     exit; // Assurez-vous d'appeler exit après la redirection
-  }
-
-} catch(PDOException $e) {
-  echo "Erreur : " . $e->getMessage();
-} catch(Exception $e) {
-  echo "Erreur : " . $e->getMessage();
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
 }
 
 $conn = null;
-
 ?>
 
 
 <?php
+
 // Informations d'identification de la base de données
 $hote = 'localhost';
 $nom_base = 'mon_site';
@@ -96,9 +92,12 @@ try {
 
         // Vérifiez si l'utilisateur existe et si le mot de passe est correct
         if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-            
+            // Stockez les informations de l'utilisateur dans la session
+            $_SESSION['nom_et_prenom'] = $utilisateur['nom_et_prenom']; // Récupérer le nom
+            $_SESSION['photo'] = $utilisateur['photo']; // Récupérer le chemin de la photo
+
             // Redirigez vers la page d'accueil ou une autre page
-            header("Location: index.php");
+            header("Location: ../index.php"); // Redirige vers le tableau de bord
             exit;
         } else {
             echo "Identifiants invalides.";
@@ -158,7 +157,12 @@ $conn = null;
             </div>
             <div class="form-box register">
                 <h2 class="animation"style="--i:17; --j:0;" id="my">S'INSCRIRE</h2>
-                <form method="post" action="#">
+                <form method="post" action="#" enctype="multipart/form-data">
+
+                <div   class="input-box animation" style="--i:18; --j:1;" id="photo" >
+                    <p>inserrer une photo</p>
+                    <input type="file" id="photo" name="photo" accept="image/*"required>     
+                    </div> 
                     <div class="input-box animation"style="--i:18; --j:1;">
                         <input type="text" name="nom_et_prenom" required>
                         <label>nom & prenom</label>
@@ -169,12 +173,7 @@ $conn = null;
                         <label>contact</label>
                         <span><i class="fa fa-phone" aria-hidden="true"></i></span>
                     </div>
-
-                    <div class="input-box animation"style="--i:18; --j:1;">
-                        <input type="text" name="categorie_de_service"required>
-                        <label>categorie de service</label>
-                        
-                    </div>
+                
                     <div class="input-box animation"style="--i:19; --j:3;">
                         <input type="email" name="email"required>
                         <label>e-mail</label>

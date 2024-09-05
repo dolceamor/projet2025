@@ -37,8 +37,8 @@ h3{
 }
 .wrapper{
     position: relative;
-    width: 750px;
-    height: 530px;
+    width: 720px;
+    height: 520px;
     background: transparent;
     border: 2px solid beige;
     overflow: hidden;
@@ -102,9 +102,10 @@ h3{
    
 }
 .form-box h2{
-    font-size: 32px;
+    font-size: 25px;
     color:#fff ;
-    text-align: center;
+    padding-left:20px ;  
+    
 }
 .form-box .input-box{
     position: relative;
@@ -112,14 +113,22 @@ h3{
     height: 50px;
     margin: 25px 0 ;
 }
-.input-box input {
+#photo{
+    padding-top:10px;
+}
+p{
+    color: #fff;
+    font-weight: 500;
+    padding-left:10px ;  
+}
+.input-box input:not(#photo) {
     width: 100%;
     height: 100%;
     background: transparent;
     border: none;
     outline: none;
     border-bottom: 2px solid #fff;
-    padding-right: 23px;
+    padding-right: 20px;
     font-size: 16px;
     color: #fff;
     font-weight: 500;
@@ -127,7 +136,7 @@ h3{
     
 }
 .form-box.register .input-box{
-    margin-left: 23px;
+    margin-left: 17px;
     
 }
 .input-box input:focus,

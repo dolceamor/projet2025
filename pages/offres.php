@@ -61,10 +61,9 @@ try {
 ?>
 
 <?php
-require '../vendor/phpmailer/phpmailer/src/Exception.php';
-require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+
 require '../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
 $servername = "localhost"; 
 $username = "root"; 
@@ -80,8 +79,11 @@ try {
         $name = htmlspecialchars($_POST['applicantName']);
         $firstName = htmlspecialchars($_POST['applicantFirstName']);
         $contact = htmlspecialchars($_POST['applicantContact']);
-        $email = htmlspecialchars($_POST['applicantEmail']);
+        $emailA = htmlspecialchars($_POST['applicantEmail']);
         $jobPosterEmail = htmlspecialchars($_POST['jobPosterEmail']);
+
+        // Récupération du service
+    $service = htmlspecialchars($_POST['service']); // Ajoutez cette ligne
 
         // Gestion du téléchargement du CV
         if (isset($_FILES['cv']) && $_FILES['cv']['error'] == UPLOAD_ERR_OK) {
@@ -89,32 +91,31 @@ try {
             move_uploaded_file($_FILES['cv']['tmp_name'], $cvPath);
 
             // Préparer l'e-mail avec PHPMailer
-            $mail = new PHPMailer(true);
+            $mail = new PHPMailer;
             try {
                 // Paramètres du serveur SMTP
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; // Utilisez votre serveur SMTP
                 $mail->SMTPAuth = true;
-                $mail->Username = 'blanchetchuisse68@gmail.com'; // Votre adresse e-mail
-                $mail->Password = 'efmwyaiuoyjrmrwa'; // Votre mot de passe
+                $mail->Username = 'blanchetchuisseu68@gmail.com'; // Votre adresse e-mail
+                $mail->Password = 'efmw yaiu oyjr mrwa'; // Votre mot de passe
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
                 // Destinataires
-                $mail->setFrom($email, $name);
-                $mail->addAddress($jobPosterEmail);
+                $mail->setFrom($emailA, $name);
+                $mail->addAddress($jobPosterEmail, 'Blanche Tchuisseu');
 
                 // Contenu
-                $mail->isHTML(true);
-                $mail->Subject = "Nouvelle candidature pour l'offre d'emploi";
-                $mail->Body = "Nom : $name<br>Prénom : $firstName<br>Contact: $contact <br>Email: $email<br><br>CV : $cvPath";
-
+                $mail->Subject = "Nouvelle candidature pour l'offre d'emploi: $service";
+                $mail->Body = "Nom : $name  \n Prénom : $firstName \n Contact: $contact \n Email: $emailA \n \n CV : $cvPath";
+                $mail->addAttachment($cvPath);
                 // Envoyer l'e-mail
                 $mail->send();
 
                 // Insérer dans la base de données
                 $stmt = $pdo->prepare("INSERT INTO applications (name, firstname, contact, email, cv) VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute([$name, $firstName, $contact, $email, $cvPath]);
+                $stmt->execute([$name, $firstName, $contact, $emailA, $cvPath]);
 
                 echo "Votre candidature a été envoyée avec succès !";
             } catch (Exception $e) {
@@ -296,7 +297,8 @@ li {
                         <p>Salaire: <?php echo htmlspecialchars($offre['salary']); ?> FCFA</p>
                         <p>Date: <?php echo htmlspecialchars($offre['date']); ?></p>
                         
-                        <button class="postuler-button" onclick="openModal()">Postuler</button>
+                        <button class="postuler-button" 
+                        onclick="openModal('<?php echo htmlspecialchars($offre['email']); ?>', '<?php echo htmlspecialchars($offre['services']); ?>')">Postuler</button>
                     </li>
         
                 <?php endforeach; ?>
@@ -314,7 +316,7 @@ li {
      <form id="applicationForm" method="post" enctype="multipart/form-data">
     <label for="applicantName">Nom :</label>
     <input type="text" name="applicantName" id="applicantName" required>
-    <br>
+    
     <label for="applicantFirstName">Prénom :</label>
     <input type="text" name="applicantFirstName" id="applicantFirstName" required>
     <br>
@@ -327,7 +329,8 @@ li {
     <label for="cvInput">Ajouter votre CV :</label>
     <input type="file" name="cv" id="cvInput" accept=".pdf,.doc,.docx" required>
     <br>
-    <input type="hidden" name="jobPosterEmail" value="blanchetchuisseu@gmail.com">
+    <input type="hidden" name="jobPosterEmail" value="">
+    <input type="hidden" name="service" value="">
     <button type="submit">Envoyer</button>
 </form>
 
@@ -350,6 +353,13 @@ li {
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
+        function openModal(jobPosterEmail, service) {
+    document.getElementById("modal").style.display = "flex";
+    document.querySelector('input[name="jobPosterEmail"]').value = jobPosterEmail; // Mettre à jour le champ caché
+    document.querySelector('input[name="service"]').value = service; // Mettre à jour le champ caché pour le service
+}
+
+
 
         function submitApplication() {
             alert("Votre candidature a été soumise avec succès !");

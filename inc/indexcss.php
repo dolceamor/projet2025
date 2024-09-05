@@ -100,7 +100,7 @@ a:hover{
     position: fixed; /* Fixe la barre latérale */
     width: 250px;
     padding: 10px 0 10px 6px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color:#ADD8E6;
     height: 100%; /* Hauteur de 100% pour occuper tout l'espace vertical */
     overflow-y: auto; /* Permet le défilement si le contenu dépasse */
 }
@@ -161,14 +161,6 @@ a:hover{
 .list-items .item a:hover {
     color: #77B5FE;
     transform: translateX(5%);
-}
-
-.list-items .item a:active,
-.list-items .item a.active {
-    color: var(--text-color-primary);
-    border-left: 7px solid transparent;
-    border-left-color: #ffffff;
-    background-color: #77B5FE;
 }
 
 .item .message-count {
@@ -273,6 +265,7 @@ a:hover{
     color: var(--text-color-third);
     font-weight: 600;
 }
+
 .recent-orders{
     margin-top: 4rem;
 }
@@ -323,9 +316,18 @@ a:hover{
 .recent-orders tbody tr:hover{
     background-color: var(--desaturate-cyan-2) !important;
 }
-.action-buttons {
-         display: flex;
-         gap: 10px;
+.action-buttons{
+    display:flex;
+    gap:10px;
+}
+.action-buttons button{
+    padding: 10px 15px;
+    background-color: #77B5FE;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
 }
 .modal {
             display: none;
@@ -466,9 +468,11 @@ h2 {
     align-items: center;
     gap: 1rem;
 }
-.header-right .profile .profile-info{
-    font-size: 16px;
+.header-right .profile .profile-info h2{
+    font-size: 1rem;
+
 }
+
 .recent-updates{
     background-color: var(--white);
     border-radius: var(--border-raduis-card);
@@ -595,9 +599,8 @@ h2 {
 }
 
 body.dark-mode {
-    color: #ffffff; 
+    color: #fff; 
 }
-
 
 /* mode responsif*/
 /* Ajout de styles pour les écrans plus petits */

@@ -96,8 +96,6 @@ try {
 
         // Vérifiez si l'utilisateur existe et si le mot de passe est correct
         if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-            // Connexion réussie
-            echo "Connexion réussie ! Bienvenue, " . htmlspecialchars($utilisateur['nom']) . ".";
             // Redirigez vers la page d'accueil ou une autre page
             header("Location: pages/accueil.php");
             exit;

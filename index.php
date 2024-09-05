@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+<?php
+
 // Configuration de la base de données
 $host = 'localhost'; // Adresse du serveur
 $db = 'mon_site'; // Nom de la base de données
@@ -17,6 +21,7 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,11 +58,14 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </a>
                     </li>  
                     <li class="item">
-                        <a href="#">
+                        <a href="pages/essai.php">
                             <span><i class="fa fa-user" aria-hidden="true"></i></span>
                             <span>Mon profil</span>
-                        </a>
-                    </li> 
+                            
+                      </a>
+                  </li>
+                      
+                     
                     <li class="item">
                         <a href="#"class="active">
                             <span><i class="fa-regular fa-envelope"></i></span>
@@ -188,11 +196,12 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-            <section class="recent-orders">
-    <div class="ro-title">
-        <h2 class="recent-orders-title">Demandes récentes</h2>
-        <a href="#" class="show all">Tout afficher</a>
-    </div>
+
+    <section class="recent-orders">
+        <div class="ro-title">
+          <h2 class="recent-orders-title">Demandes récentes</h2>
+         <a href="#" class="show all">Tout afficher</a>
+       </div>
     <table id="jobTable">
         <thead>
             <tr>
@@ -270,13 +279,25 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="profile">
                     <div class="profile-info">
-                        <p>Salut,<strong>white</strong></p>
-                        <small>Admin</small>
+                      <?php
+                        if (isset($_SESSION['nom_et_prenom'])) {
+                             echo "<h2> " . htmlspecialchars($_SESSION['nom_et_prenom']) . "!</h2>";
+                       }
+                       ?>
                     </div>
-                    <div class="profile-image">
-                        <img src="images/imag.jpg" alt="" width="100%"/>
-                    </div>
-                </div>
+                   <div class="profile-image">
+                      <?php
+        
+                         // Vérifiez si la photo est stockée dans la session
+                          if (isset($_SESSION['photo'])) {
+                         echo "<img src='pages/" . htmlspecialchars($_SESSION['photo']) . "' width='64' height='60'/>";
+                           } else {
+                          echo "<p>Aucune photo de profil disponible.</p>";
+                           }
+     
+                        ?>
+                  </div>
+             </div>
             </header>
             <div class="recent-updates">
                 <h2>Commentaires</h2>
@@ -571,6 +592,8 @@ function darkMode() {
         }
     });
 </script>
+
+
 
     </html>
 
